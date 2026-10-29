@@ -31,12 +31,20 @@ npm run dist:win   # 免安装 exe
 | fleeRadius | 170 | 惊跑距离 px |
 | sound | true | 爬行声，`--sound=0` 关闭 |
 | antenna | 1.15 | 触须长度（体长的倍数） |
+| lite | false | 省电模式，`--lite=1` 开启：像素比 1、阴影减半、潜伏时约 30 帧 |
 
 ## 触须
 潜伏时头缩在屏幕外，只从边缘伸出两根触须：平时慢扫、突然弹一下、偶尔一动不动；光标靠近时两根触须会抽动着对准光标，再靠近就缩回去。
-原模型的触须是绑死在头骨上的，`src/antennae.js` 把它们隐藏，换成可独立弯曲摆动的程序化触须。改完这个文件后执行下面的命令重新注入 index.html：
+原模型的触须是绑死在头骨上的，`src/antennae.js` 把它们隐藏，换成可独立弯曲摆动的程序化触须。
+## 性能
+- 阴影只在每只蟑螂脚下的小范围里计算，不再整屏采样。
+- 自动降画质：帧率低于 48 时，先逐级降低像素比（最低 1），再降低阴影精度。
+- 配置一般的电脑可以直接用 `npx electron . --lite=1`。
+
+## 修改触须或性能逻辑
+`index.html` 是打包好的文件，自己写的模块放在 `src/`（`antennae.js` 触须、`perf.js` 性能）。改完后执行下面的命令，重新注入 index.html：
 ```bash
-python3 tools/patch_antennae.py
+python3 tools/patch.py
 ```
 
 ## 协议
