@@ -1,0 +1,29 @@
+{
+  "name": "roach-pet",
+  "version": "2.0.0",
+  "description": "A realistic 3D American cockroach desktop pet",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XiuwenYin/annoying-desk-pet.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac dmg",
+    "dist:win": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.xwyin.roachpet",
+    "productName": "RoachPet",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}
