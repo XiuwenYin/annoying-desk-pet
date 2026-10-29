@@ -54,3 +54,13 @@ python3 tools/patch.py
 3D model: "Cockroach" by CK (https://sketchfab.com/xcellf), licensed under CC BY 4.0.
 Source: https://sketchfab.com/3d-models/cockroach-cead55b8aa8643d48d67240bad028592
 （贴图已缩至 1024 并转为 WebP 以减小体积）
+
+# !!!恐虫注意!!!
+
+潜伏：只从屏幕边缘伸出触须，光标靠近时触须会转过来对准它
+
+![潜伏时只露触须](docs/lurk.gif)
+
+全身
+
+![RoachPet 全身](docs/pose.jpg)
