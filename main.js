@@ -1,5 +1,6 @@
 const { app, BrowserWindow, screen, globalShortcut, Tray, Menu } = require('electron');
 const path = require('path');
+const { createShakeDetector } = require('./shake');
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 const gotLock = app.requestSingleInstanceLock();
@@ -43,10 +44,14 @@ app.whenReady().then(() => {
   win.loadFile(path.join(__dirname, 'index.html'), { query });
   for (const ev of ['display-metrics-changed', 'display-added', 'display-removed']) screen.on(ev, fit);
 
+  // 甩鼠标退出：1.5 秒内左右来回甩 6 次（每次至少 150px），--shakeQuit=0 关闭
+  const shake = query.shakeQuit === '0' ? null : createShakeDetector();
+
   // 主进程轮询光标位置，避免依赖穿透窗口的鼠标事件
   setInterval(() => {
     if (win.isDestroyed()) return;
     const p = screen.getCursorScreenPoint();
+    if (shake && shake(p.x, Date.now())) return app.quit();
     win.webContents.send('cursor', { x: p.x - origin.x, y: p.y - origin.y });
   }, 33);
 

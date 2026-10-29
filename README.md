@@ -21,6 +21,8 @@ npm run dist:win   # 免安装 exe
 
 快捷键被别的软件占用时，点菜单栏（Windows 为托盘）里的蟑螂图标 →「退出 RoachPet」。
 
+也可以**甩鼠标退出**：在 1.5 秒内把鼠标左右快速来回甩 3 下以上（每次至少 150px），蟑螂就会消失。平时正常移动、拖选不会触发；不想要这个功能可以用 `--shakeQuit=0` 关掉。
+
 ## 参数
 | 参数 | 默认 | 说明 |
 |---|---|---|
@@ -33,6 +35,7 @@ npm run dist:win   # 免安装 exe
 | fleeRadius | 170 | 惊跑距离 px |
 | sound | true | 爬行声，`--sound=0` 关闭 |
 | antenna | 1.15 | 触须长度（体长的倍数） |
+| shakeQuit | true | 甩鼠标退出，`--shakeQuit=0` 关闭 |
 | lite | false | 省电模式，`--lite=1` 开启：像素比 1、阴影减半、潜伏时约 30 帧 |
 
 ## 触须
